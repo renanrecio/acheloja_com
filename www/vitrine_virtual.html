@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+	
+<!-- Validação do forumlário -->
+<script type="text/javascript">
+			var xmlHttp;
+			var top_ultimo_prod;
+			var cidade;
+			var cep_bairro;
+			var str;
+
+			function createXMLHttpRequest() {
+			if (window.ActiveXObject) {
+			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			else if (window.XMLHttpRequest) {
+			xmlHttp = new XMLHttpRequest();
+			}
+			}
+
+			function startRequest_vitrine_virtual() {
+			createXMLHttpRequest();
+			xmlHttp.onreadystatechange = handleStateChange;
+			
+			
+			xmlHttp.open("POST", "http://54.207.38.125/AcheLoja2.0/m/ajax_vitrine_app.php", true);
+			xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			
+			xmlHttp.send("nick_site=clubd");
+			
+			}
+
+			
+			function handleStateChange() {
+			if(xmlHttp.readyState == 4) {
+			if(xmlHttp.status == 200) {
+			//document.getElementById("resultado").innerHTML = xmlHttp.responseText;
+			//document.getElementById("verifica_login").value = xmlHttp.responseText;
+			
+				str = xmlHttp.responseText;
+				
+				
+				document.write(str);
+				
+				
+				
+			}
+			}
+			}
+			
+		
+			
+		startRequest_vitrine_virtual();
+			
+</script>   
+
+</body>
+</html>

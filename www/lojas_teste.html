@@ -124,6 +124,29 @@ function setDefault(){
   ga('send', 'pageview');
 
 </script>
+
+<script>
+
+function aparecer_localizacao(e){
+		
+	e.getElementsByTagName('div')[0].style.visibility= "visible";
+	
+}
+
+function desaparecer_localizacao(e){
+		
+	e.getElementsByTagName('div')[0].style.visibility= "hidden";
+}
+
+function chamar_vitrine(nick_site){
+		
+	localStorage.nick_site = nick_site;
+	
+	window.location = "vitrine_virtual.html";
+
+}
+</script>
+
 </head>
      <body onload="setDefault()"  >
 	 
@@ -147,6 +170,7 @@ function fechar(){
 }
 
 </script>
+
 
 
 	
@@ -180,32 +204,21 @@ function fechar(){
        <input type="hidden" value="8" id="contador_geral_prod2_caso_voltar" name="contador_geral_prod2_caso_voltar" />
        <input type="hidden" value="1" id="contador_caso_voltar" name="contador_caso_voltar" />
        <input type="hidden" value="5" id="top_caso_voltar" name="top_caso_voltar" />
-       <input type="hidden" value="0" id="left_caso_voltar" name="left_caso_voltar" />
+       <input type="hidden" value="0	" id="left_caso_voltar" name="left_caso_voltar" />
 	   <input type="hidden" value="1" id="tem_loja_na_cidade_caso_voltar" name="tem_loja_na_cidade_caso_voltar" />
  </form>
 
  
  
-<script>
 
-function aparecer_localizacao(e){
-		
-	e.getElementsByTagName('div')[0].style.visibility= "visible";
-	
-}
-
-function desaparecer_localizacao(e){
-		
-	e.getElementsByTagName('div')[0].style.visibility= "hidden";
-}
-</script>
 
 	
 <!-- Validação do forumlário -->
 <script type="text/javascript">
 			var xmlHttp;
 			var top_ultimo_prod;
-			
+			var cidade;
+			var cep_bairro;
 
 			function createXMLHttpRequest() {
 			if (window.ActiveXObject) {
@@ -220,11 +233,18 @@ function desaparecer_localizacao(e){
 			createXMLHttpRequest();
 			xmlHttp.onreadystatechange = handleStateChange;
 			
+			cep_bairro = localStorage.cep_bairro;
+			cidade = localStorage.cidade;
+			
+			alert("cep:"+cep_bairro+" - cidade:"+ localStorage.cidade + "");
 			
 			xmlHttp.open("POST", "http://54.207.38.125/AcheLoja2.0/m/ajax_lojas_app.php", true);
 			xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			
-			xmlHttp.send("contador_geral=" + document.getElementById("contador_geral").value  + "&contador_geral_prod1=" + document.getElementById("contador_geral_prod1").value  + "&contador_geral_prod2=" + document.getElementById("contador_geral_prod2").value  + "&contador=" + document.getElementById("contador").value + "&top=" + document.getElementById("top").value + "&left=" + document.getElementById("left").value + "&categorias= and ( 0 or categoria like 'Roupas'  or categoria like 'Calçados'  or categoria like 'Acessórios'  or categoria like 'Info e Eletro'  or categoria like 'Estética e Saúde'  or categoria like 'Outros'  )&cep_bairro=4297000&cidade=São Paulo&tem_loja_na_cidade=1");
+			//xmlHttp.send("contador_geral=" + document.getElementById("contador_geral").value  + "&contador_geral_prod1=" + document.getElementById("contador_geral_prod1").value  + "&contador_geral_prod2=" + document.getElementById("contador_geral_prod2").value  + "&contador=" + document.getElementById("contador").value + "&top=" + document.getElementById("top").value + "&left=" + document.getElementById("left").value + "&categorias= and ( 0 or categoria like 'Roupas'  or categoria like 'Calçados'  or categoria like 'Acessórios'  or categoria like 'Info e Eletro'  or categoria like 'Estética e Saúde'  or categoria like 'Outros'  )&cep_bairro=" + localStorage.cep_bairro + "&cidade=" + localStorage.cidade + "&tem_loja_na_cidade=1");
+			xmlHttp.send("contador_geral=" + document.getElementById("contador_geral").value  + "&contador_geral_prod1=" + document.getElementById("contador_geral_prod1").value  + "&contador_geral_prod2=" + document.getElementById("contador_geral_prod2").value  + "&contador=" + document.getElementById("contador").value + "&top=" + document.getElementById("top").value + "&left=" + document.getElementById("left").value + "&categorias= and ( 0 or categoria like 'Roupas'  or categoria like 'Calçados'  or categoria like 'Acessórios'  or categoria like 'Info e Eletro'  or categoria like 'Estética e Saúde'  or categoria like 'Outros'  )&cep_bairro=04297000&cidade=São Paulo&tem_loja_na_cidade=1");
+			
+			
 			
 			//alert("contador_geral=" + document.getElementById("contador_geral").value + "&top=" + document.getElementById("top").value+ "&left=" + document.getElementById("left").value +"");
 			top_ultimo_prod = document.getElementById("top").value;
@@ -386,7 +406,7 @@ startRequest_mais_produtos();
  
 </body>
 	
-	
+
 
 	
 </html>

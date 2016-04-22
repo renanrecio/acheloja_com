@@ -37,7 +37,11 @@
 function enviar_dados(){
 
 
-document.cookie = "cidade=sp";
+localStorage.cidade = document.getElementById('cidade').value;
+
+localStorage.cep_bairro = document.getElementById('cep_bairro').value;
+
+alert("cidade: "+localStorage.cidade+" -cep:"+localStorage.cep_bairro);
 
 form[0].submit;
 
