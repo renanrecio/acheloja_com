@@ -138,14 +138,21 @@ function desaparecer_localizacao(e){
 	e.getElementsByTagName('div')[0].style.visibility= "hidden";
 }
 
+
+</script>
+
+<script language="javascript" type="text/javascript">
 function chamar_vitrine(nick_site){
 		
 	localStorage.nick_site = nick_site;
 	
-	window.location = "vitrine_virtual.html";
+	window.location.href="vitrine_virtual.html";
+	
 
 }
+
 </script>
+
 
 </head>
      <body onload="setDefault()"  >
@@ -236,7 +243,7 @@ function fechar(){
 			cep_bairro = localStorage.cep_bairro;
 			cidade = localStorage.cidade;
 			
-			alert("cep:"+cep_bairro+" - cidade:"+ localStorage.cidade + "");
+			//alert("cep:"+cep_bairro+" - cidade:"+ localStorage.cidade + "");
 			
 			xmlHttp.open("POST", "http://54.207.38.125/AcheLoja2.0/m/ajax_lojas_app.php", true);
 			xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
